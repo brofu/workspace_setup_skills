@@ -1,0 +1,7 @@
+# ~/.zshrc — managed by ws_config
+# Skills append their config below this line.
+
+# tmux aliases (ws_config)
+alias tx='tmux -2'
+alias tx_load='bash $HOME/.tmux_auto_load'
+source /Users/jeff.shao/workspace/ws_config/skills/wss-git-alias/git_alias.sh
