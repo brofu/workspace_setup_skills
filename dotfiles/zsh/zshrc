@@ -1,7 +1,14 @@
 # ~/.zshrc — managed by ws_config
-# Skills append their config below this line.
+# Skills append their source lines below this line.
 
-# tmux aliases (ws_config)
-alias tx='tmux -2'
-alias tx_load='bash $HOME/.tmux_auto_load'
-source /Users/jeff.shao/workspace/ws_config/skills/wss-git-alias/git_alias.sh
+# Derive repo root from the symlink at ~/.zshrc
+WS_CONFIG_DIR="$(cd "$(dirname "$(readlink -f "$HOME/.zshrc")")/../.." && pwd)"
+
+# Claude global skill links
+source "$HOME/workspace/ai/skills/ai_workspace/.claude/setup_global_links.sh"
+
+source "$WS_CONFIG_DIR/dotfiles/wss-tmux/tmux_alias.sh"
+source "$WS_CONFIG_DIR/dotfiles/wss-git-alias/git_alias.sh"
+
+# oh-my-zsh + powerlevel10k (ws_config)
+source "$WS_CONFIG_DIR/dotfiles/wss-ohmyzsh/zshrc_omz.sh"

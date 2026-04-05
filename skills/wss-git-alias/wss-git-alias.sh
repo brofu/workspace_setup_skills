@@ -4,9 +4,9 @@ set -e
 REAL_SCRIPT="$(readlink -f "${BASH_SOURCE[0]}")"
 REPO_ROOT="$(cd "$(dirname "$REAL_SCRIPT")/../.." && pwd)"
 ZSHRC="$REPO_ROOT/dotfiles/zsh/zshrc"
-SOURCE_LINE="source $REPO_ROOT/skills/wss-git-alias/git_alias.sh"
+SOURCE_LINE='source "$WS_CONFIG_DIR/dotfiles/wss-git-alias/git_alias.sh"'
 
-if grep -qF "wss-git-alias/git_alias.sh" "$ZSHRC"; then
+if grep -qF "dotfiles/wss-git-alias/git_alias.sh" "$ZSHRC"; then
     echo "Git aliases already sourced in $ZSHRC — skipping."
 else
     echo "$SOURCE_LINE" >> "$ZSHRC"

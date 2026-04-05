@@ -40,6 +40,10 @@ bash skills/wss-git-alias/wss-git-alias.sh
 | `gph` | `git push`      |
 | `gcf` | `git config`    |
 
+## Config File
+
+`dotfiles/zsh/git_alias.sh` — the alias definitions (sourced by zshrc).
+
 ## After Running
 
 Reload the shell to activate:
