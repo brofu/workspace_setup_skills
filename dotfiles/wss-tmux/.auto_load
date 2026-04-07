@@ -12,17 +12,32 @@ LOCAL_HOME="$HOME/workspace/ai"
 tmux has-session -t "$DEV_SESSION" &>/dev/null
 if [ $? != 0 ]; then
     tmux new-session -s "$DEV_SESSION" -n "arc"    -c "$DEV_HOME/gstf-engineering/grab-support-platform/arc"           -d
+    tmux split-window -v -c "$DEV_HOME/gstf-engineering/grab-support-platform/arc"    -t "$DEV_SESSION:arc"
+    sleep 0.1
     tmux new-window  -n "nudges"  -c "$DEV_HOME/gophers/go/mex/nudges"                                               -t "$DEV_SESSION"
+    tmux split-window -v -c "$DEV_HOME/gophers/go/mex/nudges"                                                        -t "$DEV_SESSION:nudges"
+    sleep 0.1
     tmux new-window  -n "ai-hub"  -c "$DEV_HOME/grab/entities/services/bpbg-ai-hub/bpbg-ai-hub"                      -t "$DEV_SESSION"
+    tmux split-window -v -c "$DEV_HOME/grab/entities/services/bpbg-ai-hub/bpbg-ai-hub"                               -t "$DEV_SESSION:ai-hub"
+    sleep 0.1
     tmux new-window  -n "others"  -c "$DEV_HOME"                                                                      -t "$DEV_SESSION"
+    tmux split-window -v -c "$DEV_HOME"                                                                               -t "$DEV_SESSION:others"
 fi
 
 # --- ai session ---
 tmux has-session -t "$LOCAL_SESSION" &>/dev/null
 if [ $? != 0 ]; then
     tmux new-session  -s "$LOCAL_SESSION" -n "model" -c "$LOCAL_HOME" -d
+    tmux split-window -v -c "$LOCAL_HOME"           -t "$LOCAL_SESSION:model"
+    sleep 0.1
     tmux new-window   -n "agent" -c "$LOCAL_HOME" -t "$LOCAL_SESSION"
+    tmux split-window -v -c "$LOCAL_HOME"           -t "$LOCAL_SESSION:agent"
+    sleep 0.1
     tmux new-window   -n "skill" -c "$LOCAL_HOME" -t "$LOCAL_SESSION"
+    tmux split-window -v -c "$LOCAL_HOME"           -t "$LOCAL_SESSION:skill"
+    sleep 0.1
+    tmux new-window   -n "others" -c "$HOME/workspace" -t "$LOCAL_SESSION"
+    tmux split-window -v -c "$HOME/workspace"          -t "$LOCAL_SESSION:others"
     tmux select-window -t "$LOCAL_SESSION:agent"
 fi
 

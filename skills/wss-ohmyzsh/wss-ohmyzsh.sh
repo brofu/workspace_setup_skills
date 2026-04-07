@@ -65,7 +65,20 @@ else
     echo "[ok] oh-my-zsh block added to managed zshrc"
 fi
 
+# --- 5. symlink p10k config ---
+P10K_CONFIG="$REPO_ROOT/dotfiles/wss-ohmyzsh/p10k.zsh"
+if [ -f "$P10K_CONFIG" ]; then
+    if [ -L "$HOME/.p10k.zsh" ] && [ "$(readlink "$HOME/.p10k.zsh")" = "$P10K_CONFIG" ]; then
+        echo "[skip] ~/.p10k.zsh symlink already correct"
+    else
+        ln -sf "$P10K_CONFIG" "$HOME/.p10k.zsh"
+        echo "[ok] ~/.p10k.zsh symlinked from ws_config"
+    fi
+else
+    echo "[info] No p10k.zsh in ws_config — run: POWERLEVEL9K_CONFIG_FILE=~/.p10k.zsh p10k configure"
+    echo "       Then commit dotfiles/wss-ohmyzsh/p10k.zsh to ws_config."
+fi
+
 echo ""
 echo "Done."
-echo "Run: p10k configure   — to set up your Powerlevel10k prompt"
 echo "Then: source ~/.zshrc"
