@@ -5,10 +5,11 @@
 WS_CONFIG_DIR="$(cd "$(dirname "$(readlink -f "$HOME/.zshrc")")/../.." && pwd)"
 
 source "$WS_CONFIG_DIR/dotfiles/wss-tmux/tmux_alias.sh"
-source "$WS_CONFIG_DIR/dotfiles/wss-git-alias/git_alias.sh"
 
 # oh-my-zsh + powerlevel10k (ws_config)
 source "$WS_CONFIG_DIR/dotfiles/wss-ohmyzsh/zshrc_omz.sh"
+
+source "$WS_CONFIG_DIR/dotfiles/wss-git-alias/git_alias.sh"
 
 # Override ll to hide extended attributes
 alias ll='eza --icons --git-ignore --git -F -l'
